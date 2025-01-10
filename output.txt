@@ -1,0 +1,90 @@
+++++ Starting the parser +++++
+
+TOKEN: SLC             	VALUE: // Import another Z# file
+Import detected with path: "math.zh"
+TOKEN: SLC             	VALUE: // Define a class
+Variable declaration detected: result
+Warning: Undefined variable 'x' at line 7, initializing with 0
+Warning: Undefined variable 'y' at line 8, initializing with 0
+Addition: 0.000000 + 0.000000 = 0.000000
+Variable declaration detected: sum
+Using variable sum with value 0.000000
+
+Function declaration detected: add
+
+Using variable x with value 0.000000
+Using variable y with value 0.000000
+Multiplication: 0.000000 * 0.000000 = 0.000000
+Variable declaration detected: product
+Using variable product with value 0.000000
+Print statement detected: ""Error in multiplication""
+
+Function declaration detected: multiply
+
+
+Class declaration detected: Calculator
+
+TOKEN: SLC             	VALUE: // Main function
+TOKEN: SLC             	VALUE: // Variables and constants
+Variable declaration detected: counter
+Variable declaration detected: str
+TOKEN: SLC             	VALUE: // Array
+Constant declaration detected: PI
+Array declaration detected: numbers
+TOKEN: SLC             	VALUE: // If-else statement
+Using variable counter with value 0.000000
+Print statement detected: ""Starting the program""
+Using variable counter with value 0.000000
+Print statement detected: ""Negative counter""
+Else-if block Detected
+++++ Else-if Block Execution ++++
+Else-if condition evaluated to false
+++++ Else-if Block Execution Stop ++++
+Print statement detected: ""Positive counter""
+If-ElseIf-Else statement Detected
+++++ If Block Execution ++++
+If condition evaluated to true
+++++ If Block Execution Stop ++++
+++++ Else Block Execution ++++
+TOKEN: SLC             	VALUE: // Loop
+Variable declaration detected: i
+Using variable i with value 0.000000
+Using variable i with value 0.000000
+Addition: 0.000000 + 1.000000 = 1.000000
+Assignment: i = 1.000000
+Using variable i with value 1.000000
+Break statement detected
+Single If statement Detected
+++++ Single If Block Execution ++++
+Condition evaluated to false
+++++ Single If Block Execution Stop ++++
+Print statement detected: "`Current number is ${numbers[i]}`"
+For loop detected 
+
+TOKEN: SLC             	VALUE: // Try-catch block
+Division: 10.000000 / 1.000000 = 10.000000
+Variable declaration detected: yy
+Print statement detected: ""Caught division by zero!""
+Division: 6.000000 / 3.000000 = 2.000000
+Multiplication: 2.000000 * 2.000000 = 4.000000
+Division: 4.000000 / 2.000000 = 2.000000
+Addition: 2.000000 + 2.000000 = 4.000000
+Assignment: counter = 4.000000
+
+MAIN Function declaration detected
+
+
+++++ Counts +++++
+Variables: 9
+Symbol: i               Type: Number     Value: 1.00      
+Symbol: result          Type: Number     Value: 0.00      
+Symbol: x               Type: Number     Value: 0.00      
+Symbol: y               Type: Number     Value: 0.00      
+Symbol: yy              Type: Number     Value: 10.00     
+Symbol: counter         Type: Number     Value: 4.00      
+Symbol: str             Type: String     Value: "Hello, World!"
+Symbol: PI              Type: Number     Value: 3.14      
+Symbol: product         Type: Number     Value: 0.00      
+Symbol: sum             Type: Number     Value: 0.00      
+Functions: 3
+Classes: 1
