@@ -69,7 +69,13 @@ Single-line comment at line 34: // Constants
 → Constant declaration detected: PI
 
 
-Single-line comment at line 37: // Array
+Single-line comment at line 37: // input
+
+Reading input for counter: Successfully read value: 5.000000
+→ Print statement detected: 5.000000
+
+
+Single-line comment at line 41: // Array
 
 First array element: 1.000000
 Additional array element: 2.000000
@@ -88,11 +94,11 @@ Array access: numberss[1] = 2.000000
 → Print statement detected: 2.000000
 
 
-Single-line comment at line 42: // If-else statement
+Single-line comment at line 46: // If-else statement
 
-Using variable counter with value 0.000000
+Using variable counter with value 5.000000
 → Print statement detected: ""Starting the program""
-Using variable counter with value 0.000000
+Using variable counter with value 5.000000
 → Print statement detected: ""Counter is 1""
 → Print statement detected: ""Counter is not 0 or 1""
 → If-Else statement Detected
@@ -100,7 +106,7 @@ Using variable counter with value 0.000000
 Condition evaluated to false
 ++++ If Block Execution Stop ++++
 ++++ Else Block Execution ++++
-Using variable counter with value 0.000000
+Using variable counter with value 5.000000
 → Print statement detected: ""Negative counter""
 → Else-if block Detected
 ++++ Else-if Block Execution ++++
@@ -109,12 +115,12 @@ Else-if condition evaluated to false
 → Print statement detected: ""Positive counter""
 → If-ElseIf-Else statement Detected
 ++++ If Block Execution ++++
-If condition evaluated to true
+If condition evaluated to false
 ++++ If Block Execution Stop ++++
 ++++ Else Block Execution ++++
 
 
-Single-line comment at line 57: // Loop
+Single-line comment at line 61: // Loop
 
 → Variable declaration detected: i
 Using variable i with value 0.000000
@@ -140,7 +146,7 @@ Assignment: ii = 1.000000
 
 
 
-Single-line comment at line 71: // Try-catch block
+Single-line comment at line 75: // Try-catch block
 
 Error: Division by zero detected
 → Variable declaration detected: yy
@@ -148,7 +154,7 @@ Error: Division by zero detected
 → Try-catch block detected
 
 
-Single-line comment at line 78: // precedence check
+Single-line comment at line 82: // precedence check
 
 Multiplication: 3.000000 * 2.000000 = 6.000000
 Division: 6.000000 / 6.000000 = 1.000000

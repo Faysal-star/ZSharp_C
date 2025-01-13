@@ -113,6 +113,7 @@ statement
     | break_stmt
     | continue_stmt
     | comment_stmt
+    | scanf_stmt
     ;
 
 include_stmt
@@ -784,6 +785,38 @@ comment_stmt
     }
     | MLC {
         fprintf(output_file, "\n\nMulti-line comment starting at line %d: %s\n\n", yylineno, yytext);
+    }
+    ;
+
+scanf_stmt
+    : SCANF '(' IDENTIFIER ')' {
+        Symbol* sym = lookup_symbol(sym_table, $3);
+        if (!sym) {
+            // If variable doesn't exist, creating it
+            VarValue val;
+            val.number_val = 0;  // init
+            if (!insert_symbol(sym_table, $3, TYPE_NUMBER, val, false)) {
+                fprintf(stderr, "Error: Cannot create variable '%s' at line %d\n", $3, yylineno);
+                YYERROR;
+            }
+        }
+        
+        float value;
+        fprintf(output_file, "Reading input for %s: ", $3);
+        printf("Reading input for %s: ", $3);
+        if (scanf("%f", &value) == 1) {
+            // Updating symbol value
+            if (sym->type == TYPE_NUMBER) {
+                sym->value.number_val = value;
+                fprintf(output_file, "Successfully read value: %f\n", value);
+            } else {
+                fprintf(stderr, "Error: Variable '%s' is not a number at line %d\n", $3, yylineno);
+                YYERROR;
+            }
+        } else {
+            fprintf(stderr, "Error: Invalid input for variable '%s' at line %d\n", $3, yylineno);
+            YYERROR;
+        }
     }
     ;
 
