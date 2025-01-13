@@ -595,7 +595,7 @@ extern FILE* output_file;
 extern void yyerror(const char *s);
 
 void print_token(const char* token_name, const char* value) {
-    fprintf(output_file, "TOKEN: %-15s \tVALUE: %s\n", token_name, value);
+    fprintf(output_file, "\n\nFound: %-15s \tVALUE: %s\n\n", token_name, value);
 }
 #line 601 "intermediate/lex.yy.c"
 #line 602 "intermediate/lex.yy.c"
@@ -894,255 +894,252 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 36 "compiler/zsharp.l"
-{ print_token("SLC", yytext); }
+{ return SLC; }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
 #line 37 "compiler/zsharp.l"
-{ print_token("MLC", yytext);
-                  for(int i = 0; yytext[i] != '\0'; i++) 
-                      if(yytext[i] == '\n') line_num++;
-                }
+{ return MLC; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 42 "compiler/zsharp.l"
+#line 39 "compiler/zsharp.l"
 { return VARIABLE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 43 "compiler/zsharp.l"
+#line 40 "compiler/zsharp.l"
 { return CONST; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 44 "compiler/zsharp.l"
+#line 41 "compiler/zsharp.l"
 { return FUNCTION; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 45 "compiler/zsharp.l"
+#line 42 "compiler/zsharp.l"
 { return IF; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 46 "compiler/zsharp.l"
+#line 43 "compiler/zsharp.l"
 { return ELSE_IF; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 47 "compiler/zsharp.l"
+#line 44 "compiler/zsharp.l"
 { return ELSE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 48 "compiler/zsharp.l"
+#line 45 "compiler/zsharp.l"
 { return FOR; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 49 "compiler/zsharp.l"
+#line 46 "compiler/zsharp.l"
 { return RETURN; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 50 "compiler/zsharp.l"
+#line 47 "compiler/zsharp.l"
 { return PRINT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 51 "compiler/zsharp.l"
+#line 48 "compiler/zsharp.l"
 { return TRUE_VAL; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 52 "compiler/zsharp.l"
+#line 49 "compiler/zsharp.l"
 { return FALSE_VAL; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 53 "compiler/zsharp.l"
+#line 50 "compiler/zsharp.l"
 { return ARRAY; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 54 "compiler/zsharp.l"
+#line 51 "compiler/zsharp.l"
 { return BREAK; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 55 "compiler/zsharp.l"
+#line 52 "compiler/zsharp.l"
 { return CONTINUE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 56 "compiler/zsharp.l"
+#line 53 "compiler/zsharp.l"
 { return INCLUDE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 57 "compiler/zsharp.l"
+#line 54 "compiler/zsharp.l"
 { return CLASS; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 58 "compiler/zsharp.l"
+#line 55 "compiler/zsharp.l"
 { return EXTENDS; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 59 "compiler/zsharp.l"
+#line 56 "compiler/zsharp.l"
 { return NULL_VAL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 60 "compiler/zsharp.l"
+#line 57 "compiler/zsharp.l"
 { return TRY; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 61 "compiler/zsharp.l"
+#line 58 "compiler/zsharp.l"
 { return CATCH; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 62 "compiler/zsharp.l"
+#line 59 "compiler/zsharp.l"
 { return SUCCESS; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 63 "compiler/zsharp.l"
+#line 60 "compiler/zsharp.l"
 { return PRIVATE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 64 "compiler/zsharp.l"
+#line 61 "compiler/zsharp.l"
 { return PUBLIC; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 65 "compiler/zsharp.l"
+#line 62 "compiler/zsharp.l"
 { return MAIN; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 66 "compiler/zsharp.l"
+#line 63 "compiler/zsharp.l"
 { return SCANF; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 68 "compiler/zsharp.l"
+#line 65 "compiler/zsharp.l"
 { yylval.number_val = atof(yytext);  return NUMBER; }
 	YY_BREAK
 case 30:
 /* rule 30 can match eol */
 YY_RULE_SETUP
-#line 69 "compiler/zsharp.l"
+#line 66 "compiler/zsharp.l"
 { yylval.string_val = strdup(yytext); return STRING_LIT; }
 	YY_BREAK
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 70 "compiler/zsharp.l"
+#line 67 "compiler/zsharp.l"
 { yylval.string_val = strdup(yytext); return VSTRING_LIT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 71 "compiler/zsharp.l"
+#line 68 "compiler/zsharp.l"
 { yylval.string_val = strdup(yytext); return IDENTIFIER; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 73 "compiler/zsharp.l"
+#line 70 "compiler/zsharp.l"
 { return PLUS; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 74 "compiler/zsharp.l"
+#line 71 "compiler/zsharp.l"
 { return MINUS; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 75 "compiler/zsharp.l"
+#line 72 "compiler/zsharp.l"
 { return MULTIPLY; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 76 "compiler/zsharp.l"
+#line 73 "compiler/zsharp.l"
 { return DIVIDE; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 77 "compiler/zsharp.l"
+#line 74 "compiler/zsharp.l"
 { return ASSIGN; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 78 "compiler/zsharp.l"
+#line 75 "compiler/zsharp.l"
 { return EQ; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 79 "compiler/zsharp.l"
+#line 76 "compiler/zsharp.l"
 { return NEQ; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 80 "compiler/zsharp.l"
+#line 77 "compiler/zsharp.l"
 { return LT; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 81 "compiler/zsharp.l"
+#line 78 "compiler/zsharp.l"
 { return LTE; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 82 "compiler/zsharp.l"
+#line 79 "compiler/zsharp.l"
 { return GT; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 83 "compiler/zsharp.l"
+#line 80 "compiler/zsharp.l"
 { return GTE; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 84 "compiler/zsharp.l"
+#line 81 "compiler/zsharp.l"
 { return AND; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 85 "compiler/zsharp.l"
+#line 82 "compiler/zsharp.l"
 { return OR; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 86 "compiler/zsharp.l"
+#line 83 "compiler/zsharp.l"
 { return NOT; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 88 "compiler/zsharp.l"
+#line 85 "compiler/zsharp.l"
 { return FOR_SEP; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 90 "compiler/zsharp.l"
+#line 87 "compiler/zsharp.l"
 { return yytext[0]; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 92 "compiler/zsharp.l"
+#line 89 "compiler/zsharp.l"
 { fprintf(stderr, "Error: Unexpected character '%s' at line %d\n", yytext, line_num); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 94 "compiler/zsharp.l"
+#line 91 "compiler/zsharp.l"
 ECHO;
 	YY_BREAK
-#line 1146 "intermediate/lex.yy.c"
+#line 1143 "intermediate/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2159,6 +2156,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 94 "compiler/zsharp.l"
+#line 91 "compiler/zsharp.l"
 
 

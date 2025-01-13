@@ -97,7 +97,9 @@ extern int yydebug;
     GTE = 298,                     /* GTE  */
     AND = 299,                     /* AND  */
     OR = 300,                      /* OR  */
-    NOT = 301                      /* NOT  */
+    NOT = 301,                     /* NOT  */
+    SLC = 302,                     /* SLC  */
+    MLC = 303                      /* MLC  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -106,13 +108,17 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 26 "compiler/zsharp.y"
+#line 53 "compiler/zsharp.y"
 
     float number_val;
     char* string_val;
     ExprValue expr_val;
+    struct {
+        char** param_names;
+        int param_count;
+    } param_list;
 
-#line 116 "intermediate/zsharp.tab.h"
+#line 122 "intermediate/zsharp.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

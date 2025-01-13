@@ -32,7 +32,7 @@ SymbolTable* init_symbol_table(int size) {
 }
 
 // Insert a new symbol into the table
-bool insert_symbol(SymbolTable* table, const char* name, VarType type, VarValue value) {
+bool insert_symbol(SymbolTable* table, const char* name, VarType type, VarValue value, bool is_constant) {
     unsigned long index = hash(name, table->size);
     Symbol* current = table->buckets[index];
     
@@ -52,6 +52,7 @@ bool insert_symbol(SymbolTable* table, const char* name, VarType type, VarValue 
     }
     new_symbol->name = strdup(name);
     new_symbol->type = type;
+    new_symbol->is_constant = is_constant;  // Set the constant flag
     
     // Assign value based on type
     switch (type) {
@@ -61,7 +62,9 @@ bool insert_symbol(SymbolTable* table, const char* name, VarType type, VarValue 
         case TYPE_STRING:
             new_symbol->value.string_val = strdup(value.string_val);
             break;
-        // Handle other types as needed
+        case TYPE_ARRAY:
+            new_symbol->value.array_val = value.array_val;
+            break;
         default:
             fprintf(stderr, "Error: Unsupported variable type for '%s'\n", name);
             free(new_symbol->name);
@@ -96,12 +99,20 @@ void print_symbol_table(FILE* file, SymbolTable* table) {
     for (int i = 0; i < table->size; ++i) {
         Symbol* current = table->buckets[i];
         while (current) {
-            if (current->type == TYPE_NUMBER) {
-                fprintf(file, "Symbol: %-15s Type: %-10s Value: %-10.2f\n", 
-                    current->name, "Number", current->value.number_val);
-            } else if (current->type == TYPE_STRING) {
-                fprintf(file, "Symbol: %-15s Type: %-10s Value: %-10s\n",
-                    current->name, "String", current->value.string_val);
+            const char* const_str = current->is_constant ? "(const) " : "";
+            switch (current->type) {
+                case TYPE_NUMBER:
+                    fprintf(file, "Symbol: %-15s Type: %-10s %sValue: %-10.2f\n", 
+                        current->name, "Number", const_str, current->value.number_val);
+                    break;
+                case TYPE_STRING:
+                    fprintf(file, "Symbol: %-15s Type: %-10s %sValue: %-10s\n",
+                        current->name, "String", const_str, current->value.string_val);
+                    break;
+                case TYPE_ARRAY:
+                    fprintf(file, "Symbol: %-15s Type: %-10s %sSize: %-10d\n",
+                        current->name, "Array", const_str, current->value.array_val->size);
+                    break;
             }
             current = current->next;
         }
@@ -116,12 +127,70 @@ void free_symbol_table(SymbolTable* table) {
             Symbol* temp = current;
             current = current->next;
             free(temp->name);
-            if (temp->type == TYPE_STRING) {
-                free(temp->value.string_val);
+            
+            switch (temp->type) {
+                case TYPE_STRING:
+                    free(temp->value.string_val);
+                    break;
+                case TYPE_ARRAY:
+                    free(temp->value.array_val->elements);
+                    free(temp->value.array_val);
+                    break;
             }
+            
             free(temp);
         }
     }
     free(table->buckets);
+    free(table);
+}
+
+FunctionTable* init_function_table() {
+    FunctionTable* table = (FunctionTable*)malloc(sizeof(FunctionTable));
+    table->count = 0;
+    for (int i = 0; i < 100; i++) {
+        table->results[i].func_name = NULL;
+        table->results[i].is_set = false;
+    }
+    return table;
+}
+
+void store_function_result(FunctionTable* table, const char* func_name, float result) {
+    // First try to find existing entry
+    for (int i = 0; i < table->count; i++) {
+        if (table->results[i].func_name && strcmp(table->results[i].func_name, func_name) == 0) {
+            table->results[i].result = result;
+            table->results[i].is_set = true;
+            return;
+        }
+    }
+    
+    // If not found and space available, create new entry
+    if (table->count < 100) {
+        table->results[table->count].func_name = strdup(func_name);
+        table->results[table->count].result = result;
+        table->results[table->count].is_set = true;
+        table->count++;
+    }
+}
+
+float get_function_result(FunctionTable* table, const char* func_name, bool* found) {
+    for (int i = 0; i < table->count; i++) {
+        if (table->results[i].func_name && strcmp(table->results[i].func_name, func_name) == 0) {
+            *found = table->results[i].is_set;
+            return table->results[i].result;
+        }
+    }
+    *found = false;
+    return 0;
+}
+
+void free_function_table(FunctionTable* table) {
+    if (!table) return;
+    for (int i = 0; i < table->count; i++) {
+        if (table->results[i].func_name) {
+            free(table->results[i].func_name);
+        }
+    }
     free(table);
 }

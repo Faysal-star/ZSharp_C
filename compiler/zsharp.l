@@ -10,7 +10,7 @@ extern FILE* output_file;
 extern void yyerror(const char *s);
 
 void print_token(const char* token_name, const char* value) {
-    fprintf(output_file, "TOKEN: %-15s \tVALUE: %s\n", token_name, value);
+    fprintf(output_file, "\n\nFound: %-15s \tVALUE: %s\n\n", token_name, value);
 }
 %}
 
@@ -33,11 +33,8 @@ WS            [ \t\r\n]
 
 {WS}+          { if (strchr(yytext, '\n')) line_num++; } 
 
-{SLC}           { print_token("SLC", yytext); }
-{MLC}           { print_token("MLC", yytext);
-                  for(int i = 0; yytext[i] != '\0'; i++) 
-                      if(yytext[i] == '\n') line_num++;
-                }
+{SLC}           { return SLC; }
+{MLC}           { return MLC; }
 
 "bet"           { return VARIABLE; }
 "fr"            { return CONST; }

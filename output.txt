@@ -1,90 +1,189 @@
 ++++ Starting the parser +++++
 
-TOKEN: SLC             	VALUE: // Import another Z# file
-Import detected with path: "math.zh"
-TOKEN: SLC             	VALUE: // Define a class
-Variable declaration detected: result
+
+
+Single-line comment at line 1: // Import another Z# file
+
+→ Import detected with path: "math.zh"
+
+
+Single-line comment at line 3: // Define a class
+
+→ Variable declaration detected: result
 Warning: Undefined variable 'x' at line 7, initializing with 0
 Warning: Undefined variable 'y' at line 8, initializing with 0
 Addition: 0.000000 + 0.000000 = 0.000000
-Variable declaration detected: sum
-Using variable sum with value 0.000000
+→ Variable declaration detected: sum
 
-Function declaration detected: add
+→ Function declaration detected: add
 
 Using variable x with value 0.000000
 Using variable y with value 0.000000
 Multiplication: 0.000000 * 0.000000 = 0.000000
-Variable declaration detected: product
-Using variable product with value 0.000000
-Print statement detected: ""Error in multiplication""
+→ Variable declaration detected: product
 
-Function declaration detected: multiply
+→ Function declaration detected: multiply
 
 
-Class declaration detected: Calculator
+→ Class declaration detected: Calculator
 
-TOKEN: SLC             	VALUE: // Main function
-TOKEN: SLC             	VALUE: // Variables and constants
-Variable declaration detected: counter
-Variable declaration detected: str
-TOKEN: SLC             	VALUE: // Array
-Constant declaration detected: PI
-Array declaration detected: numbers
-TOKEN: SLC             	VALUE: // If-else statement
+
+
+Single-line comment at line 16: // Function declarations
+
+Using variable x with value 0.000000
+Using variable y with value 0.000000
+Addition: 0.000000 + 0.000000 = 0.000000
+→ Variable declaration detected: isum
+
+→ Function declaration detected: test_add
+
+
+
+Single-line comment at line 22: // Main function
+
+
+
+Single-line comment at line 24: // Function call
+
+Single argument: 1.000000
+Additional argument: 3.000000
+→ Function call detected: test_add
+Parameter x = 1.000000
+Parameter y = 3.000000
+→ Variable declaration detected: func_sum
+→ Print statement detected: 0.000000
+
+
+Single-line comment at line 28: // Variables and constants
+
+→ Variable declaration detected: counter
+→ Variable declaration detected: str
+→ Print statement detected: ""Hello, World!""
+String index access: str[0] = 'H' (ASCII: 72.000000)
+→ Print statement detected: 72.000000
+
+
+Single-line comment at line 34: // Constants
+
+→ Constant declaration detected: PI
+
+
+Single-line comment at line 37: // Array
+
+First array element: 1.000000
+Additional array element: 2.000000
+Additional array element: 3.000000
+Additional array element: 4.000000
+Additional array element: 5.000000
+Array element 0: 1.000000
+Array element 1: 2.000000
+Array element 2: 3.000000
+Array element 3: 4.000000
+Array element 4: 5.000000
+→ Array declaration: numberss with 5 elements
+Array access: numberss[0] = 1.000000
+→ Print statement detected: 1.000000
+Array access: numberss[1] = 2.000000
+→ Print statement detected: 2.000000
+
+
+Single-line comment at line 42: // If-else statement
+
 Using variable counter with value 0.000000
-Print statement detected: ""Starting the program""
+→ Print statement detected: ""Starting the program""
 Using variable counter with value 0.000000
-Print statement detected: ""Negative counter""
-Else-if block Detected
+→ Print statement detected: ""Counter is 1""
+→ Print statement detected: ""Counter is not 0 or 1""
+→ If-Else statement Detected
+++++ If Block Execution ++++
+Condition evaluated to false
+++++ If Block Execution Stop ++++
+++++ Else Block Execution ++++
+Using variable counter with value 0.000000
+→ Print statement detected: ""Negative counter""
+→ Else-if block Detected
 ++++ Else-if Block Execution ++++
 Else-if condition evaluated to false
 ++++ Else-if Block Execution Stop ++++
-Print statement detected: ""Positive counter""
-If-ElseIf-Else statement Detected
+→ Print statement detected: ""Positive counter""
+→ If-ElseIf-Else statement Detected
 ++++ If Block Execution ++++
 If condition evaluated to true
 ++++ If Block Execution Stop ++++
 ++++ Else Block Execution ++++
-TOKEN: SLC             	VALUE: // Loop
-Variable declaration detected: i
+
+
+Single-line comment at line 57: // Loop
+
+→ Variable declaration detected: i
 Using variable i with value 0.000000
 Using variable i with value 0.000000
 Addition: 0.000000 + 1.000000 = 1.000000
 Assignment: i = 1.000000
 Using variable i with value 1.000000
-Break statement detected
-Single If statement Detected
+→ Break statement detected
+→ Single If statement Detected
 ++++ Single If Block Execution ++++
 Condition evaluated to false
 ++++ Single If Block Execution Stop ++++
-Print statement detected: "`Current number is ${numbers[i]}`"
-For loop detected 
+→ Print statement detected: 1.000000
+→ Variable declaration detected: ii
+Using variable ii with value 0.000000
+→ Print statement detected: 0.000000
+Using variable ii with value 0.000000
+Addition: 0.000000 + 1.000000 = 1.000000
+Assignment: ii = 1.000000
+→ For loop detected 
 
-TOKEN: SLC             	VALUE: // Try-catch block
-Division: 10.000000 / 1.000000 = 10.000000
-Variable declaration detected: yy
-Print statement detected: ""Caught division by zero!""
-Division: 6.000000 / 3.000000 = 2.000000
-Multiplication: 2.000000 * 2.000000 = 4.000000
-Division: 4.000000 / 2.000000 = 2.000000
+→ For loop detected 
+
+
+
+Single-line comment at line 71: // Try-catch block
+
+Error: Division by zero detected
+→ Variable declaration detected: yy
+→ Print statement detected: ""Caught division by zero!""
+→ Try-catch block detected
+
+
+Single-line comment at line 78: // precedence check
+
+Multiplication: 3.000000 * 2.000000 = 6.000000
+Division: 6.000000 / 6.000000 = 1.000000
+Multiplication: 1.000000 * 2.000000 = 2.000000
 Addition: 2.000000 + 2.000000 = 4.000000
 Assignment: counter = 4.000000
 
-MAIN Function declaration detected
+→ MAIN Function declaration detected
 
 
 ++++ Counts +++++
-Variables: 9
+
+Variables: 12
+
 Symbol: i               Type: Number     Value: 1.00      
 Symbol: result          Type: Number     Value: 0.00      
+Symbol: ii              Type: Number     Value: 1.00      
 Symbol: x               Type: Number     Value: 0.00      
 Symbol: y               Type: Number     Value: 0.00      
+Symbol: func_sum        Type: Number     Value: 0.00      
+Symbol: numberss        Type: Array      Size: 5         
 Symbol: yy              Type: Number     Value: 10.00     
+Symbol: isum            Type: Number     Value: 0.00      
 Symbol: counter         Type: Number     Value: 4.00      
 Symbol: str             Type: String     Value: "Hello, World!"
-Symbol: PI              Type: Number     Value: 3.14      
+Symbol: PI              Type: Number     (const) Value: 3.14      
 Symbol: product         Type: Number     Value: 0.00      
 Symbol: sum             Type: Number     Value: 0.00      
-Functions: 3
+
+Functions: 4
+
+Function: add (Parameters: 2)
+Function: multiply (Parameters: 2)
+Function: test_add (Parameters: 2)
+Function: OG (Parameters: 0)
+
 Classes: 1
+
