@@ -1,6 +1,9 @@
+
 # Z# Programming Language
 
 Z# (Z-Sharp) is a modern programming language that combines simplicity with style. It features a unique syntax inspired by modern programming trends and Gen-Z slangs, making coding both fun and functional.
+
+> Not completed yet. 
 
 ## Getting Started
 
@@ -20,19 +23,6 @@ make
 ```
 ./zsharp sample.zs output.txt
 ```
-
-
-## Language Features
-
-- Variable declarations with type inference
-- Functions with parameters and return values
-- Arrays and strings with indexing
-- Control structures (if-else, loops)
-- Classes with inheritance
-- Exception handling
-- Comments (single-line and multi-line)
-- Constants
-- String interpolation
 
 ## Keyword Table
 
@@ -101,7 +91,11 @@ era OG() {
 
     // Constants
     fr PI = 3.14159
-    
+
+    // input
+    checkIt(counter)
+    spill_tea counter
+
     // Array
     squad numberss = [1, 2, 3, 4, 5]
     spill_tea numberss[0]
